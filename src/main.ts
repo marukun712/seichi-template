@@ -3,6 +3,7 @@ import Alpine from "alpinejs";
 import maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import type { z } from "zod";
+import { fillDistricts } from "./geocode";
 import { Data } from "./schema";
 import "./components/Header";
 import "./components/Footer";
@@ -25,13 +26,16 @@ Alpine.data(
 				const res = await fetch("/data.json");
 				const json = await res.json();
 				const result = Data.safeParse(json);
-				if (result.success) {
-					this.data = result.data;
-					document.title = result.data.title;
-				} else {
+				if (!result.success) {
 					this.error = "データの形式が正しくありません";
 					console.error(result.error);
+					return;
 				}
+				this.data = result.data;
+				document.title = result.data.title;
+
+				const filled = await fillDistricts(result.data.spots);
+				this.data = { ...this.data, spots: filled };
 			} catch {
 				this.error = "データの読み込みに失敗しました";
 			}

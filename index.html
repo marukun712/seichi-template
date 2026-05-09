@@ -5,17 +5,21 @@
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Murecho:wght@100..900&family=Noto+Sans+JP:wght@100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap"
-    rel="stylesheet">
+
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet" />
+
   <style>
     * {
       font-family: "Noto Sans JP", sans-serif;
-      font-optical-sizing: auto;
-      font-style: normal;
+    }
+
+    body {
+      margin: 0;
     }
   </style>
 
@@ -23,7 +27,8 @@
 </head>
 
 <body x-data="app">
-  <header-component x-bind:title="data?.title ?? ''" x-bind:color="data?.color ?? '#1095c1'">
+  <header-component x-bind:title="data?.title ?? ''" x-bind:color="data?.color ?? '#5594c3'"
+    x-bind:spots="JSON.stringify(data?.spots ?? [])">
   </header-component>
 
   <main class="container">
@@ -36,9 +41,12 @@
         <section>
           <p x-text="data.about"></p>
         </section>
+
         <section>
-          <div x-init="initMap($el)" style="height: 600px; border-radius: 0.5rem; overflow: hidden;"></div>
+          <div x-init="initMap($el)" style="height: 600px; border-radius: var(--pico-border-radius); overflow: hidden;">
+          </div>
         </section>
+
         <footer-component x-bind:author="data.author" x-bind:links="JSON.stringify(data.links)">
         </footer-component>
       </div>
