@@ -5,8 +5,8 @@ type GsiResponse = {
 	};
 };
 
-async function reverseGeocode(lngLat: number[]): Promise<string> {
-	const [lng, lat] = lngLat;
+async function reverseGeocode(latLng: number[]): Promise<string> {
+	const [lat, lng] = latLng;
 	const res = await fetch(
 		`https://mreversegeocoder.gsi.go.jp/reverse-geocoder/LonLatToAddress?lat=${lat}&lon=${lng}`,
 	);
@@ -15,13 +15,13 @@ async function reverseGeocode(lngLat: number[]): Promise<string> {
 }
 
 export async function fillDistricts<
-	T extends { district?: string; lngLat: number[] },
+	T extends { district?: string; latLng: number[] },
 >(spots: T[]): Promise<T[]> {
 	return Promise.all(
 		spots.map((spot) =>
 			spot.district
 				? spot
-				: reverseGeocode(spot.lngLat).then((district) => ({
+				: reverseGeocode(spot.latLng).then((district) => ({
 						...spot,
 						district,
 					})),

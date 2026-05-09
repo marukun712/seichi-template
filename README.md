@@ -32,6 +32,8 @@ bun i
 	"color": "#5594c3",
 	"about": "作品の舞台となった場所をまとめた聖地巡礼情報サイトです。ここに作品の説明を入れてください。",
 	"author": "@your_handle",
+  	"authorLink": "https://example.com",
+
 	"links": ["https://example.com"],
 	"spots": [
 		{
@@ -43,8 +45,22 @@ bun i
 }
 ```
 
-spotsにはスポット名、概要、緯度経度、画像を添付することができます。
-lngLatには、[軽度, 緯度]の順に入力してください。
+spotsにはスポット名、概要、緯度経度、画像などを添付することができます。
+
+# Deploy
+
+GitHub Pagesに自動でデプロイされます。
+必ず、`vite.config.ts`で`base`をリポジトリ名に変更してください。
+
+```typescript
+import atomicoVite from "@atomico/vite";
+import { defineConfig } from "vite";
+
+export default defineConfig({
+  base: "/seichi-template/", // ←リポジトリ名に変更
+  plugins: [atomicoVite()],
+});
+```
 
 # License
 

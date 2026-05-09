@@ -21,9 +21,17 @@
     body {
       margin: 0;
     }
+
+    .maplibregl-marker {
+      all: revert;
+    }
+
+    .maplibregl-popup-close-button {
+      all: revert;
+    }
   </style>
 
-  <title>Seichi Template</title>
+  <title>聖地巡礼マップ</title>
 </head>
 
 <body x-data="app">
@@ -47,7 +55,8 @@
           </div>
         </section>
 
-        <footer-component x-bind:author="data.author" x-bind:links="JSON.stringify(data.links)">
+        <footer-component x-bind:author="data.author" x-bind:authorLink="data.authorLink"
+          x-bind:links="JSON.stringify(data.links)">
         </footer-component>
       </div>
     </template>

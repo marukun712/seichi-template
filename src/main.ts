@@ -23,7 +23,7 @@ Alpine.data(
 
 		async init() {
 			try {
-				const res = await fetch("/data.json");
+				const res = await fetch("data.json");
 				const json = await res.json();
 				const result = Data.safeParse(json);
 				if (!result.success) {
@@ -32,7 +32,6 @@ Alpine.data(
 					return;
 				}
 				this.data = result.data;
-				document.title = result.data.title;
 
 				const filled = await fillDistricts(result.data.spots);
 				this.data = { ...this.data, spots: filled };
@@ -47,13 +46,13 @@ Alpine.data(
 			const map = new maplibregl.Map({
 				container: el,
 				style: "https://tiles.openfreemap.org/styles/liberty",
-				center: this.data.spots[0].lngLat as [number, number],
+				center: [this.data.spots[0].latLng[1], this.data.spots[0].latLng[0]],
 				zoom: 11,
 			});
 
 			for (const spot of this.data.spots) {
 				new maplibregl.Marker({ color: this.data.color })
-					.setLngLat(spot.lngLat as [number, number])
+					.setLngLat([spot.latLng[1], spot.latLng[0]])
 					.setPopup(
 						new maplibregl.Popup({ offset: 25 }).setHTML(
 							`<strong>${spot.name}</strong><p>${spot.description}</p>`,

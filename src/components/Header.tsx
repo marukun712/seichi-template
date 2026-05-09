@@ -38,23 +38,7 @@ export const Header = c(
 						onclick={() => setOpen(true)}
 						aria-label="メニューを開く"
 					>
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							width="24"
-							height="24"
-							viewBox="0 0 24 24"
-							fill="none"
-							stroke="currentColor"
-							stroke-width="2"
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							class="lucide lucide-text-align-justify-icon lucide-text-align-justify"
-						>
-							<title>メニューを開く</title>
-							<path d="M3 5h18" />
-							<path d="M3 12h18" />
-							<path d="M3 19h18" />
-						</svg>
+						☰
 					</button>
 
 					<strong
@@ -105,27 +89,33 @@ export const Header = c(
 									onclick={() => setOpen(false)}
 									aria-label="閉じる"
 								>
-									<svg
-										xmlns="http://www.w3.org/2000/svg"
-										width="24"
-										height="24"
-										viewBox="0 0 24 24"
-										fill="none"
-										stroke="currentColor"
-										stroke-width="2"
-										stroke-linecap="round"
-										stroke-linejoin="round"
-										class="lucide lucide-x-icon lucide-x"
-									>
-										<title>メニューを閉じる</title>
-										<path d="M18 6 6 18" />
-										<path d="m6 6 12 12" />
-									</svg>
+									✕
 								</button>
 							</header>
 
+							<nav
+								style={{
+									margin: "1rem 0",
+								}}
+							>
+								<ol
+									style={{
+										margin: 0,
+										paddingLeft: "1.25rem",
+										display: "grid",
+										gap: ".25rem",
+									}}
+								>
+									{districts.map((district) => (
+										<li key={district}>
+											<a href={`#district-${district}`}>{district}</a>
+										</li>
+									))}
+								</ol>
+							</nav>
+
 							{districts.map((district) => (
-								<section key={district}>
+								<section key={district} id={`district-${district}`}>
 									<h2>{district}</h2>
 
 									{grouped[district].map((spot) => (

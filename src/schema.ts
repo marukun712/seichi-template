@@ -2,7 +2,7 @@ import z from "zod";
 
 export const Spot = z.object({
 	name: z.string(),
-	lngLat: z.array(z.number()).length(2),
+	latLng: z.array(z.number()).length(2),
 	description: z.string(),
 	image: z.string().optional(),
 	district: z.string().optional(),
@@ -13,6 +13,7 @@ export const Data = z.object({
 	color: z.string(),
 	about: z.string(),
 	author: z.string(),
+	authorLink: z.string(),
 	links: z.array(z.string()),
 	spots: z.array(Spot),
 });

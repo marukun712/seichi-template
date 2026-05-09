@@ -1,13 +1,16 @@
 import { c } from "atomico";
 
 export const Footer = c(
-	({ author, links }) => {
+	({ author, authorLink, links }) => {
 		const parsedLinks: string[] = JSON.parse(links || "[]");
 		return (
 			<host>
 				<footer>
 					<p>
-						このサイトは、{author}
+						このサイトは、
+						<span>
+							<a href={authorLink}>{author}</a>
+						</span>
 						によって作成されました。誤り等ありましたら、DMまでご連絡ください。
 					</p>
 					<p>関連リンク:</p>
@@ -27,6 +30,7 @@ export const Footer = c(
 	{
 		props: {
 			author: { type: String, value: () => "" },
+			authorLink: { type: String, value: () => "" },
 			links: { type: String, value: () => "[]" },
 		},
 	},
