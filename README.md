@@ -32,13 +32,12 @@ bun i
 	"color": "#5594c3",
 	"about": "作品の舞台となった場所をまとめた聖地巡礼情報サイトです。ここに作品の説明を入れてください。",
 	"author": "@your_handle",
-  	"authorLink": "https://example.com",
-
+	"authorLink": "https://example.com",
 	"links": ["https://example.com"],
 	"spots": [
 		{
 			"name": "スポット名",
-			"lngLat": [139.6917, 35.6895],
+			"latLng": [35.6325459229131, 139.79739234642838],
 			"description": "このスポットの説明を入れてください。"
 		}
 	]
