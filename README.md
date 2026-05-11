@@ -44,7 +44,19 @@ bun i
 }
 ```
 
-spotsにはスポット名、概要、緯度経度、画像などを添付することができます。
+spotsにはスポット名、概要、緯度経度、地区、画像などを添付することができます。
+
+このスキーマでバリデーションされます。
+
+```typescript
+export const Spot = z.object({
+  name: z.string(),
+  latLng: z.array(z.number()).length(2),
+  description: z.string(),
+  images: z.array(z.string()).optional(),
+  district: z.string().optional(),
+});
+```
 
 # Deploy
 

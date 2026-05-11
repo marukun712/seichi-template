@@ -4,7 +4,7 @@ export const Spot = z.object({
 	name: z.string(),
 	latLng: z.array(z.number()).length(2),
 	description: z.string(),
-	image: z.string().optional(),
+	images: z.array(z.string()).optional(),
 	district: z.string().optional(),
 });
 

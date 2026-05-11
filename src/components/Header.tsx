@@ -4,7 +4,7 @@ type Spot = {
 	name: string;
 	lngLat: [number, number];
 	description: string;
-	image?: string;
+	images?: string[];
 	district?: string;
 };
 
@@ -124,16 +124,17 @@ export const Header = c(
 												<strong>{spot.name}</strong>
 											</header>
 
-											{spot.image && (
+											{spot.images?.map((src) => (
 												<img
-													src={spot.image}
+													key={src}
+													src={src}
 													alt={spot.name}
 													style={{
 														width: "100%",
-														borderRadius: "var(--pico-border-radius)",
+														paddingTop: "12px",
 													}}
 												/>
-											)}
+											))}
 
 											<p>{spot.description}</p>
 										</article>
